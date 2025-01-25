@@ -45,14 +45,11 @@ defmodule Wreport.Printer do
 	end
 
 	def print_columns(values,columns) do
-		for column <- columns do
-			print_value(values,column)
-		end
+		acc = Enum.map(columns, fn column -> "#{Map.get(@print_labels,column,column)} --> #{Map.get(values,column,"")}\n" end)
+		print_values(acc)
 	end
 
-	def print_value(values, key) when is_map(values) and is_binary(key) do
-		IO.puts """
-		#{Map.get(@print_labels,key,key)} --> #{Map.get(values,key,"")}
-		"""
+	def print_values(values) when is_list(values) do
+		:io.format(values)
 	end
 end

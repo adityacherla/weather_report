@@ -10,7 +10,7 @@ defmodule CliTest do
 	end
 
 	test "station code returned when code is given" do
-		assert parse_args(["KDTO"]) == {"KDTO"}
+		assert parse_args(["KDTO"]) == "KDTO"
 	end
 
 end
